@@ -1,7 +1,6 @@
 $(document).ready(function (){
 
 
-
 var heroes = ['batman', 'superman', 'birdman', 'Wonder Woman', 'Ant Man', 'Batgirl', 'Daredevil', 'Aquaman', 'Thor', 'Hulk'];
 
 function renderButtons(){
@@ -16,7 +15,6 @@ function renderButtons(){
 		$('#buttonsView').append(b);
 	}
 }
-
 
 $('#addHero').on('click', function(){
 	var hero = $('#hero-input').val();
@@ -48,17 +46,27 @@ $(document).on('click', '.hero', function(){
 			heroImage.attr('data-animate', results[i].images.fixed_height.url);
 			heroImage.attr('class', 'heroImage');
 			heroImage.attr('data-state', 'still');
-			
-
 			heroDiv.append(p);
 			heroDiv.append(heroImage);
 			$('#gifsAppearHere').append(heroDiv);
 		}
 
-});
+	});
+
+	$(document).on('click', '.heroImage', function(){
+			var state = $(this).attr('data-state');
+			if(state == 'still'){
+				$(this).attr('src', $(this).data('animate'));
+				$(this).attr('data-state', 'animate');
+				console.log(this);
+			}else{
+				$(this).attr('src', $(this).data('still'));
+				$(this).attr('data-state', 'still');
+				console.log(this);
+			}
 
 	});
 
-	
+});
 
 });
